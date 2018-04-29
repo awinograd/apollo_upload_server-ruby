@@ -68,12 +68,10 @@ module ApolloUploadServer
 
 
     def assign_file(field, splited_path, file)
-      wrapped_file = Wrappers::UploadedFile.new(file)
-
       if field.is_a? Hash
-        field.merge!(splited_path.last => wrapped_file)
+        field.merge!(splited_path.last => file)
       elsif field.is_a? Array
-        field[splited_path.last.to_i] = wrapped_file
+        field[splited_path.last.to_i] = file
       end
     end
   end
